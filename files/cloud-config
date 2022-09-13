@@ -1,0 +1,17 @@
+#cloud-config
+users:
+  - name: ${username}
+    groups: ${user_groups}
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    lock_passwd: false
+    ssh_authorized_keys:
+      - ${ssh_key}
+package_upgrade: true
+
+packages:
+  - git
+  - python3-pip
+  - python3-venv
+runcmd:
+  - touch /var/lib/cloud/instance/warnings/.skip

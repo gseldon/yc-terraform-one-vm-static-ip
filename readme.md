@@ -3,7 +3,7 @@
 ## Подготовка
 1. Установить Terraform из зеркала Яндекса. [Подробнее тут](https://cloud.yandex.ru/docs/tutorials/infrastructure-management/terraform-quickstart)
 2. [Получить токен](https://cloud.yandex.ru/docs/iam/concepts/authorization/oauth-token)
-3. Создать файл ```.auto.tfvars`` в корне проекта
+3. Создать файл ```.auto.tfvars``` в корне проекта
 
 ```sh
 cp .auto.tfvars.example .auto.tfvars

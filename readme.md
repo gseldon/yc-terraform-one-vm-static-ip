@@ -1,4 +1,6 @@
-# Проект создания 1 ВМ Container Optimized со статическим IP адресом на YandexCloud
+[![tfsec](https://github.com/gseldon/yc-terraform-one-vm-static-ip/actions/workflows/tfsec.yml/badge.svg)](https://github.com/gseldon/yc-terraform-one-vm-static-ip/actions/workflows/tfsec.yml)
+
+# Создание 1 ВМ Container Optimized со статическим IP адресом на YandexCloud
 
 ## Подготовка
 1. Установить Terraform из зеркала Яндекса. [Подробнее тут](https://cloud.yandex.ru/docs/tutorials/infrastructure-management/terraform-quickstart)

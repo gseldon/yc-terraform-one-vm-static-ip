@@ -8,7 +8,7 @@
 ```sh
 cp .auto.tfvars.example .auto.tfvars
 ```
-4. Зарезервировать статический [IP адрес](https://cloud.yandex.ru/docs/vpc/operations/get-static-ip)
+4. Зарезервировать статический [IP адрес](https://cloud.yandex.ru/docs/vpc/operations/get-static-ip) ([платный](https://cloud.yandex.ru/docs/vpc/pricing), не удаляется после `terraform destroy`)
 5. Указать все переменные в `.auto.tfvars`.
 6. После успешного создания ВМ будет выдана строка для подключения. 
 
@@ -27,7 +27,7 @@ yc vpc address list
 
 ```
 vm-info = {
-  "connect" = "ssh  your_login@static_ip"
+  "connect" = "ssh your_login@static_ip"
 }
 ```
 

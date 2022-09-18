@@ -20,10 +20,12 @@ variable disk_size {
   }
 }
 
-variable "ssh_keys" {
-    type = map
-    default = {
-        file = "~/.ssh/id_ed25519.pub"
-        user = "your_login"
-    }
+variable "ssh_keys" {}
+
+variable static_addr {}
+
+# прерываемая ВМ
+variable "preemptible" {
+  description = "Прерываемая ВМ"
+  default = true
 }

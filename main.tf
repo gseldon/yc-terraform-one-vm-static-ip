@@ -1,11 +1,3 @@
-resource "yandex_vpc_address" "static_addr" {
-  name = "static_adr"
-
-  external_ipv4_address {
-    zone_id = "ru-central1-a"
-  }
-}
-
 resource "random_id" "vm_name" {
     byte_length = 8
 }
@@ -14,6 +6,7 @@ resource "yandex_compute_instance" "vm-1" {
 
   name        = "${var.instance_name}-${lower(random_id.vm_name.hex)}"
   platform_id = "standard-v3"
+  allow_stopping_for_update = true
 
   resources {
     cores  = var.cores
@@ -32,7 +25,7 @@ resource "yandex_compute_instance" "vm-1" {
   network_interface {
     subnet_id = "${data.yandex_vpc_subnet.subnet.subnet_id}"
     nat       = true
-    nat_ip_address = "${resource.yandex_vpc_address.static_addr.external_ipv4_address[0].address}"
+    nat_ip_address = "${data.yandex_vpc_address.static_addr.external_ipv4_address[0].address}"
   }
 
   metadata = {
@@ -41,7 +34,7 @@ resource "yandex_compute_instance" "vm-1" {
   }
   
   scheduling_policy {
-    preemptible = true
+    preemptible = var.preemptible
   }
 }
 
@@ -65,7 +58,7 @@ data "yandex_compute_image" "container-image" {
 
 output vm-info {
   value       = {
-    connect = join(" ", ["ssh ", "${var.ssh_keys["user"]}@${resource.yandex_compute_instance.vm-1.network_interface.0.nat_ip_address}"])
+    connect = join(" ", ["ssh","${var.ssh_keys["user"]}@${resource.yandex_compute_instance.vm-1.network_interface.0.nat_ip_address}"])
   }
   sensitive   = false
   description = "Вывод информации о ВМ"
